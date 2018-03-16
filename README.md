@@ -1,2 +1,2 @@
-# react-responsive-container
-Leverage ResizeObserver to add breakpoints to your component
+# react-size-watcher
+Leverage ResizeObserver by adding breakpoints to your component

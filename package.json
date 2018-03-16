@@ -1,0 +1,82 @@
+{
+  "name": "react-size-watcher",
+  "version": "1.0.0",
+  "author": "Pavel Klimashkin",
+  "description": "Leverage ResizeObserver to add breakpoints to your component and track its size",
+  "homepage": "https://github.com/klimashkin/react-size-watcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klimashkin/react-size-watcher.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klimashkin/react-size-watcher/issues"
+  },
+  "keywords": [
+    "react",
+    "responsive",
+    "resize",
+    "resizeobserver",
+    "ResizeObserver",
+    "react-size-watcher",
+    "react-size-observer",
+    "media query"
+  ],
+  "main": "./dist/react-size-watcher.js",
+  "es2015": "./dist/es2015/react-size-watcher.js",
+  "es2017": "./dist/es2017/react-size-watcher.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "peerDependencies": {
+    "react": "^16.2.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-syntax-trailing-function-commas": "6.22.0",
+    "babel-plugin-transform-async-to-generator": "6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.13",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.18.2",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-react": "^7.7.0",
+    "github-changes": "^1.1.2",
+    "null-loader": "0.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rimraf": "2.6.2",
+    "uglifyjs-webpack-plugin": "1.2.3",
+    "webpack": "^4.1.1",
+    "webpack-cli": "2.0.12"
+  },
+  "scripts": {
+    "preversion": "npm run lint && npm run clean && npm run build",
+    "postversion": "npm run changelog",
+    "build:umd": "cross-env BUILD_MODE=umd webpack",
+    "build:umd-min": "cross-env BUILD_MODE=umd-min webpack",
+    "build:es6": "cross-env BUILD_MODE=es2015 webpack",
+    "build:es6-min": "cross-env BUILD_MODE=es2015-min webpack",
+    "build:es8": "cross-env BUILD_MODE=es2017 webpack",
+    "build:es8-min": "cross-env BUILD_MODE=es2017-min webpack",
+    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min",
+    "clean": "rimraf dist",
+    "lint": "eslint ./",
+    "changelog": "github-changes -o klimashkin -r react-size-watcher -b master -f ./CHANGELOG.md --order-semver --use-commit-body"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
