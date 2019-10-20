@@ -12,37 +12,49 @@ if (!process.env.BUILD_MODE.startsWith('umd')) {
 if (process.env.BUILD_MODE.startsWith('umd')) {
   babelOptions = {
     presets: [
-      'react',
-      'env',
+      ['@babel/preset-react', {useBuiltIns: false}],
+      ['@babel/preset-env', {loose: true, modules: false}],
     ],
     plugins: [
-      'transform-class-properties',
-      'transform-object-rest-spread',
-      ['transform-react-remove-prop-types', {mode: 'remove'}],
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
+      // Optional Chaining Operator: 'user.address?.street'
+      ['@babel/plugin-proposal-optional-chaining', {loose: true}],
+      // Nullish coalescing: x ?? y
+      ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: true}],
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
   };
 } else if (process.env.BUILD_MODE.startsWith('es2015')) {
   babelOptions = {
+    presets: [
+      ['@babel/preset-react', {useBuiltIns: true}],
+    ],
     plugins: [
-      ['transform-react-jsx', {useBuiltIns: true}],
-      'syntax-jsx',
-
-      'transform-async-to-generator',
-
-      'transform-class-properties',
-      ['transform-object-rest-spread', {useBuiltIns: true}],
-      ['transform-react-remove-prop-types', {mode: 'remove'}],
+      '@babel/plugin-transform-async-to-generator',
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['@babel/plugin-proposal-object-rest-spread', {loose: true, useBuiltIns: true}],
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
   };
 } else if (process.env.BUILD_MODE.startsWith('es2017')) {
   babelOptions = {
+    presets: [
+      ['@babel/preset-react', {useBuiltIns: true}],
+    ],
     plugins: [
-      ['transform-react-jsx', {useBuiltIns: true}],
-      'syntax-jsx',
-
-      'transform-class-properties',
-      ['transform-object-rest-spread', {useBuiltIns: true}],
-      ['transform-react-remove-prop-types', {mode: 'remove'}],
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['@babel/plugin-proposal-object-rest-spread', {loose: true, useBuiltIns: true}],
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
+    ],
+  };
+} else if (process.env.BUILD_MODE.startsWith('es2018') || process.env.BUILD_MODE.startsWith('es2019')) {
+  babelOptions = {
+    presets: [
+      ['@babel/preset-react', {useBuiltIns: true}],
+    ],
+    plugins: [
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
   };
 }

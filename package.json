@@ -30,51 +30,52 @@
     "src"
   ],
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": "^16.10.2"
   },
   "dependencies": {
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-syntax-async-functions": "6.13.0",
-    "babel-plugin-syntax-trailing-function-commas": "6.22.0",
-    "babel-plugin-transform-async-to-generator": "6.24.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.13",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "cross-env": "^5.1.4",
-    "eslint": "^4.18.2",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-react": "^7.7.0",
-    "github-changes": "^1.1.2",
-    "null-loader": "0.1.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "rimraf": "2.6.2",
-    "uglifyjs-webpack-plugin": "1.2.3",
-    "webpack": "^4.1.1",
-    "webpack-cli": "2.0.12"
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.5.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0",
+    "terser": "^4.3.9",
+    "terser-webpack-plugin": "^2.1.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   },
   "scripts": {
     "preversion": "npm run lint && npm run clean && npm run build",
-    "postversion": "npm run changelog",
     "build:umd": "cross-env BUILD_MODE=umd webpack",
     "build:umd-min": "cross-env BUILD_MODE=umd-min webpack",
     "build:es6": "cross-env BUILD_MODE=es2015 webpack",
     "build:es6-min": "cross-env BUILD_MODE=es2015-min webpack",
     "build:es8": "cross-env BUILD_MODE=es2017 webpack",
     "build:es8-min": "cross-env BUILD_MODE=es2017-min webpack",
-    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min",
+    "build:es9": "cross-env BUILD_MODE=es2018 webpack",
+    "build:es9-min": "cross-env BUILD_MODE=es2018-min webpack",
+    "build:es10": "cross-env BUILD_MODE=es2019 webpack",
+    "build:es10-min": "cross-env BUILD_MODE=es2019-min webpack",
+    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min && npm run build:es9 && npm run build:es9-min && npm run build:es10 && npm run build:es10-min",
     "clean": "rimraf dist",
-    "lint": "eslint ./",
-    "changelog": "github-changes -o klimashkin -r react-size-watcher -b master -f ./CHANGELOG.md --order-semver --use-commit-body"
+    "lint": "eslint ./"
   },
   "engines": {
     "node": ">=6.0.0"
