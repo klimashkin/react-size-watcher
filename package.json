@@ -22,6 +22,7 @@
     "react-size-observer",
     "media query"
   ],
+  "sideEffects": false,
   "main": "./dist/react-size-watcher.js",
   "es2015": "./dist/es2015/react-size-watcher.js",
   "es2017": "./dist/es2017/react-size-watcher.js",
