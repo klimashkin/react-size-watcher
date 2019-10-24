@@ -17,9 +17,7 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
     ],
     plugins: [
       ['@babel/plugin-proposal-class-properties', {loose: true}],
-      // Optional Chaining Operator: 'user.address?.street'
       ['@babel/plugin-proposal-optional-chaining', {loose: true}],
-      // Nullish coalescing: x ?? y
       ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: true}],
       ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
@@ -32,6 +30,8 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
     plugins: [
       '@babel/plugin-transform-async-to-generator',
       ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['@babel/plugin-proposal-optional-chaining', {loose: true}],
+      ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: true}],
       ['@babel/plugin-proposal-object-rest-spread', {loose: true, useBuiltIns: true}],
       ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
@@ -43,6 +43,8 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
     ],
     plugins: [
       ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['@babel/plugin-proposal-optional-chaining', {loose: true}],
+      ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: true}],
       ['@babel/plugin-proposal-object-rest-spread', {loose: true, useBuiltIns: true}],
       ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
@@ -54,6 +56,8 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
     ],
     plugins: [
       ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['@babel/plugin-proposal-optional-chaining', {loose: true}],
+      ['@babel/plugin-proposal-nullish-coalescing-operator', {loose: true}],
       ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
   };
@@ -61,7 +65,7 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
 
 module.exports = {
   entry: {
-    [`react-size-watcher${minify ? '.min' : ''}`]: './src/index.js',
+    [`react-size-watcher${minify ? '.min' : ''}`]: './src/SizeWatcher.js',
   },
   output: {
     filename,

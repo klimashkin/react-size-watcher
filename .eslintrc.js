@@ -279,7 +279,7 @@ module.exports = {
     // http://eslint.org/docs/rules/no-unmodified-loop-condition
     'no-unmodified-loop-condition': 2,
     // disallow usage of expressions in statement position
-    'no-unused-expressions': 2,
+    'no-unused-expressions': 0,
     // disallow unused labels
     'no-unused-labels': 2,
     // disallow unnecessary .call() and .apply()
@@ -647,5 +647,12 @@ module.exports = {
     'unicode-bom': [2, 'never'],
     // require regex literals to be wrapped in parentheses
     'wrap-regex': 0,
+
+    /** Hooks analysis https://reactjs.org/docs/hooks-rules.html **/
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 1,
+
+    'babel/semi': 2,
+    'babel/no-unused-expressions': 2, // Stop complaining about optional chaining
   },
 };
