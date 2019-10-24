@@ -1,40 +1,28 @@
-import {Component} from 'react';
-import {contextTypes} from './SizeWatcherTypes';
+import {Component, createContext} from 'react';
+
+export const SizeWatcherContext = createContext(null);
 
 export default class SizeWatcherProvider extends Component {
-  static childContextTypes = contextTypes;
-
   constructor(props, context) {
     super(props, context);
 
-    this.checkInChildContainer = this.checkInChildContainer.bind(this);
-    this.checkOutChildContainer = this.checkOutChildContainer.bind(this);
-
-    this.childContext = {
-      sizeWatcher: {
-        checkIn: this.checkInChildContainer,
-        checkOut: this.checkOutChildContainer,
-      },
+    this.contextObj = {
+      checkIn: this.checkInChildContainer.bind(this),
+      checkOut: this.checkOutChildContainer.bind(this),
     };
 
     // Map: {[<DomElement>]: {instance, dom: <DomElement>}}
     this.childrenContainers = new Map();
   }
 
-  getChildContext() {
-    return this.childContext;
-  }
-
   componentDidMount() {
     // Create resizeObservable that handles all children containers size change
     // One for all: https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/F5-VcUZtBAAJ
     this.resizeObservable = new ResizeObserver(entries => {
-      for (const {target, contentRect} of entries) {
-        const container = this.childrenContainers.get(target);
+      for (const {target} of entries) {
+        const {width, height} = target.getBoundingClientRect();
 
-        if (container) {
-          container.instance.updateSize({width: contentRect.width, height: contentRect.height});
-        }
+        this.childrenContainers.get(target)?.handleSize({width, height});
       }
     });
 
@@ -45,19 +33,21 @@ export default class SizeWatcherProvider extends Component {
     });
   }
 
-  checkInChildContainer(instance, dom) {
-    this.childrenContainers.set(dom, {instance, dom});
-
-    if (this.resizeObservable) {
-      this.resizeObservable.observe(dom);
-    }
+  checkInChildContainer(dom, handleSize) {
+    this.childrenContainers.set(dom, {handleSize, dom});
+    this.resizeObservable?.observe(dom);
   }
 
   checkOutChildContainer(dom) {
     this.childrenContainers.delete(dom);
+    this.resizeObservable?.unobserve(dom);
   }
 
   render() {
-    return this.props.children;
+    return (
+      <SizeWatcherContext.Provider value={this.contextObj}>
+        {this.props.children}
+      </SizeWatcherContext.Provider>
+    );
   }
 }
