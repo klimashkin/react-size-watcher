@@ -1,6 +1,6 @@
 {
   "name": "react-size-watcher",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Pavel Klimashkin",
   "description": "Leverage ResizeObserver to add breakpoints to your component and track its size",
   "homepage": "https://github.com/klimashkin/react-size-watcher",
@@ -26,6 +26,8 @@
   "main": "./dist/react-size-watcher.js",
   "es2015": "./dist/es2015/react-size-watcher.js",
   "es2017": "./dist/es2017/react-size-watcher.js",
+  "es2018": "./dist/es2018/react-size-watcher.js",
+  "es2019": "./dist/es2019/react-size-watcher.js",
   "files": [
     "dist",
     "src"

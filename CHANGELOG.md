@@ -1,6 +1,9 @@
 ## Change Log
 
 
+### 2.0.2 (2019-10-23)
+- Add es2018/19 exports to the package.json
+
 ### 2.0.1 (2019-10-23)
 - Republish the right build
 
