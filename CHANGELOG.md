@@ -1,6 +1,9 @@
 ## Change Log
 
 
+### 2.1.0 (2019-10-30)
+- Take offsetWidth/Height instead of getBoundingClientRect to ignore `transform: scale`
+
 ### 2.0.2 (2019-10-23)
 - Add es2018/19 exports to the package.json
 
