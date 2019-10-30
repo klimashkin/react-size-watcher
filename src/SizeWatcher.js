@@ -119,7 +119,9 @@ function SizeWatcher(props, ref) {
 
     // Find the size of the container right after the first render (componentDidMount), find the right breakpoint and rerender
     if (sizeRef.current === null) {
-      const {width, height} = $dom.getBoundingClientRect();
+      // Take offsetWidth/Height instead of getBoundingClientRect to ignore `transform: scale` styles
+      const width = $dom.offsetWidth;
+      const height = $dom.offsetHeight;
       const {breakpoint, findBreakpoint} = stateRef.current;
       const newSize = {width, height};
       const newBreakpoint = findBreakpoint(breakpoints, newSize);

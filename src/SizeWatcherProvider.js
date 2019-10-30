@@ -20,9 +20,15 @@ export default class SizeWatcherProvider extends Component {
     // One for all: https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/F5-VcUZtBAAJ
     this.resizeObservable = new ResizeObserver(entries => {
       for (const {target} of entries) {
-        const {width, height} = target.getBoundingClientRect();
+        if (this.childrenContainers.has(target)) {
+          // Take offsetWidth/Height instead of entry.contentRect,
+          // to match width/height (if not changed) taken on SizeWatcher mount, to avoid calling findBreakpoint method there,
+          // since offsetWidth/Height return rounded values whereas contentRect returns fractions
+          const width = target.offsetWidth;
+          const height = target.offsetHeight;
 
-        this.childrenContainers.get(target)?.handleSize({width, height});
+          this.childrenContainers.get(target).handleSize({width, height});
+        }
       }
     });
 
