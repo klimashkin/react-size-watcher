@@ -1,4 +1,4 @@
-import {Component, createContext} from 'react';
+import {Component, createContext, createElement} from 'react';
 
 export const SizeWatcherContext = createContext(null);
 
@@ -50,10 +50,10 @@ export default class SizeWatcherProvider extends Component {
   }
 
   render() {
-    return (
-      <SizeWatcherContext.Provider value={this.contextObj}>
-        {this.props.children}
-      </SizeWatcherContext.Provider>
+    return createElement(
+      SizeWatcherContext.Provider,
+      {value: this.contextObj},
+      this.props.children,
     );
   }
 }
