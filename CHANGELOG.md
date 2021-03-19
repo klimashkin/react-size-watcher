@@ -1,6 +1,9 @@
 ## Change Log
 
 
+### 2.1.1 (2021-03-19)
+- Use createElement to not depend on the React import
+
 ### 2.1.0 (2019-10-30)
 - Take offsetWidth/Height instead of getBoundingClientRect to ignore `transform: scale`
 
