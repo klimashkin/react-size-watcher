@@ -1,6 +1,9 @@
 ## Change Log
 
 
+### 2.1.2 (2021-03-19)
+- Include React 17+ in peer dependecies
+
 ### 2.1.1 (2021-03-19)
 - Use createElement to not depend on the React import
 
