@@ -16,19 +16,34 @@ export default class SizeWatcherProvider extends Component {
   }
 
   componentDidMount() {
+    const {sync} = this.props;
+    let raf;
     // Create resizeObservable that handles all children containers size change
     // One for all: https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/F5-VcUZtBAAJ
     this.resizeObservable = new ResizeObserver(entries => {
-      for (const {target} of entries) {
-        if (this.childrenContainers.has(target)) {
-          // Take offsetWidth/Height instead of entry.contentRect,
-          // to match width/height (if not changed) taken on SizeWatcher mount, to avoid calling findBreakpoint method there,
-          // since offsetWidth/Height return rounded values whereas contentRect returns fractions
-          const width = target.offsetWidth;
-          const height = target.offsetHeight;
+      const handler = () => {
+        for (const {target} of entries) {
+          if (this.childrenContainers.has(target)) {
+            // Take offsetWidth/Height instead of entry.contentRect,
+            // to match width/height (if not changed) taken on SizeWatcher mount, to avoid calling findBreakpoint method there,
+            // since offsetWidth/Height return rounded values whereas contentRect returns fractions
+            const width = target.offsetWidth;
+            const height = target.offsetHeight;
 
-          this.childrenContainers.get(target).handleSize({width, height});
+            this.childrenContainers.get(target).handleSize({width, height});
+          }
         }
+      };
+
+      if (sync) {
+        handler();
+      } else {
+        // Call the handler asynchronously to prevent "ResizeObserver loop limit exceeded" error
+        if (raf) {
+          window.cancelAnimationFrame(raf);
+        }
+
+        raf = window.requestAnimationFrame(handler);
       }
     });
 
