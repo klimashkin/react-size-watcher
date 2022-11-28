@@ -1,8 +1,15 @@
+import PropTypes from 'prop-types';
 import {Component, createContext, createElement} from 'react';
 
 export const SizeWatcherContext = createContext(null);
 
 export default class SizeWatcherProvider extends Component {
+  static propTypes = {
+    // Whether observer updates are synchronous or asynchronously debounced through requestAnimationFrame
+    // Asynchronous by default
+    sync: PropTypes.bool
+  }
+
   constructor(props, context) {
     super(props, context);
 
