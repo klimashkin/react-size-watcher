@@ -17,7 +17,6 @@ export default class SizeWatcherProvider extends Component {
 
   componentDidMount() {
     const {sync} = this.props;
-    let raf;
     // Create resizeObservable that handles all children containers size change
     // One for all: https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/F5-VcUZtBAAJ
     this.resizeObservable = new ResizeObserver(entries => {
@@ -39,11 +38,11 @@ export default class SizeWatcherProvider extends Component {
         handler();
       } else {
         // Call the handler asynchronously to prevent "ResizeObserver loop limit exceeded" error
-        if (raf) {
-          window.cancelAnimationFrame(raf);
+        if (this.raf) {
+          window.cancelAnimationFrame(this.raf);
         }
 
-        raf = window.requestAnimationFrame(handler);
+        this.raf = window.requestAnimationFrame(handler);
       }
     });
 
@@ -52,6 +51,14 @@ export default class SizeWatcherProvider extends Component {
     this.childrenContainers.forEach(({dom}) => {
       this.resizeObservable.observe(dom);
     });
+  }
+
+  componentWillUnmount() {
+    if (this.raf) {
+      window.cancelAnimationFrame(this.raf);
+    }
+    this.resizeObservable?.disconnect();
+    this.childrenContainers.clear();
   }
 
   checkInChildContainer(dom, handleSize) {
