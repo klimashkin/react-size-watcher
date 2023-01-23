@@ -28,6 +28,9 @@
   "es2017": "./dist/es2017/react-size-watcher.js",
   "es2018": "./dist/es2018/react-size-watcher.js",
   "es2019": "./dist/es2019/react-size-watcher.js",
+  "es2020": "./dist/es2020/react-size-watcher.js",
+  "es2021": "./dist/es2021/react-size-watcher.js",
+  "es2022": "./dist/es2022/react-size-watcher.js",
   "files": [
     "dist",
     "src"
@@ -76,7 +79,13 @@
     "build:es9-min": "cross-env BUILD_MODE=es2018-min webpack",
     "build:es10": "cross-env BUILD_MODE=es2019 webpack",
     "build:es10-min": "cross-env BUILD_MODE=es2019-min webpack",
-    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min && npm run build:es9 && npm run build:es9-min && npm run build:es10 && npm run build:es10-min",
+    "build:es11": "cross-env BUILD_MODE=es2020 webpack",
+    "build:es11-min": "cross-env BUILD_MODE=es2020-min webpack",
+    "build:es12": "cross-env BUILD_MODE=es2021 webpack",
+    "build:es12-min": "cross-env BUILD_MODE=es2021-min webpack",
+    "build:es13": "cross-env BUILD_MODE=es2022 webpack",
+    "build:es13-min": "cross-env BUILD_MODE=es2022-min webpack",
+    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min && npm run build:es9 && npm run build:es9-min && npm run build:es10 && npm run build:es10-min && npm run build:es11 && npm run build:es11-min && npm run build:es12 && npm run build:es12-min && npm run build:es13 && npm run build:es13-min",
     "clean": "rimraf dist",
     "lint": "eslint ./"
   },

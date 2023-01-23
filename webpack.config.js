@@ -61,6 +61,25 @@ if (process.env.BUILD_MODE.startsWith('umd')) {
       ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
     ],
   };
+} else if (process.env.BUILD_MODE.startsWith('es2020') || process.env.BUILD_MODE.startsWith('es2021')) {
+  babelOptions = {
+    presets: [
+      ['@babel/preset-react', {useBuiltIns: true}],
+    ],
+    plugins: [
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
+    ],
+  };
+} else if (process.env.BUILD_MODE.startsWith('es2022')) {
+  babelOptions = {
+    presets: [
+      ['@babel/preset-react', {useBuiltIns: true}],
+    ],
+    plugins: [
+      ['transform-react-remove-prop-types', {mode: 'remove', removeImport: true}],
+    ],
+  };
 }
 
 module.exports = {
