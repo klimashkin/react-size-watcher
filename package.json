@@ -1,6 +1,6 @@
 {
   "name": "react-size-watcher",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "author": "Pavel Klimashkin",
   "description": "Leverage ResizeObserver to add breakpoints to your component and track its size",
   "homepage": "https://github.com/klimashkin/react-size-watcher",
@@ -85,7 +85,7 @@
     "build:es12-min": "cross-env BUILD_MODE=es2021-min webpack",
     "build:es13": "cross-env BUILD_MODE=es2022 webpack",
     "build:es13-min": "cross-env BUILD_MODE=es2022-min webpack",
-    "build": "npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min && npm run build:es9 && npm run build:es9-min && npm run build:es10 && npm run build:es10-min && npm run build:es11 && npm run build:es11-min && npm run build:es12 && npm run build:es12-min && npm run build:es13 && npm run build:es13-min",
+    "build": "npm run clean && npm run build:umd && npm run build:umd-min && npm run build:es6 && npm run build:es6-min && npm run build:es8 && npm run build:es8-min && npm run build:es9 && npm run build:es9-min && npm run build:es10 && npm run build:es10-min && npm run build:es11 && npm run build:es11-min && npm run build:es12 && npm run build:es12-min && npm run build:es13 && npm run build:es13-min",
     "clean": "rimraf dist",
     "lint": "eslint ./"
   },
