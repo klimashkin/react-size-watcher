@@ -7,8 +7,8 @@ export default class SizeWatcherProvider extends Component {
   static propTypes = {
     // Whether observer updates are synchronous or asynchronously debounced through requestAnimationFrame
     // Asynchronous by default
-    sync: PropTypes.bool
-  }
+    sync: PropTypes.bool,
+  };
 
   constructor(props, context) {
     super(props, context);
@@ -24,6 +24,7 @@ export default class SizeWatcherProvider extends Component {
 
   componentDidMount() {
     const {sync} = this.props;
+
     // Create resizeObservable that handles all children containers size change
     // One for all: https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/z6ienONUb5A/F5-VcUZtBAAJ
     this.resizeObservable = new ResizeObserver(entries => {
@@ -64,6 +65,7 @@ export default class SizeWatcherProvider extends Component {
     if (this.raf) {
       window.cancelAnimationFrame(this.raf);
     }
+
     this.resizeObservable?.disconnect();
     this.childrenContainers.clear();
   }
